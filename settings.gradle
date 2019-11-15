@@ -1,0 +1,2 @@
+include ':app', ':pwlogger'
+rootProject.name='PWLog4j'
