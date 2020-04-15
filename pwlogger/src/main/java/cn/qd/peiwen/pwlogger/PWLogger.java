@@ -28,13 +28,13 @@ public class PWLogger {
         return Thread.currentThread().getStackTrace()[4];
     }
 
-    public static void dubug(String content) {
+    public static void debug(String content) {
         StackTraceElement caller = getCallerStackTraceElement();
         String tag = generateTag(caller);
         logger.debug(tag + "->" + content);
     }
 
-    public static void dubug(Throwable throwable) {
+    public static void debug(Throwable throwable) {
         StackTraceElement caller = getCallerStackTraceElement();
         String tag = generateTag(caller);
         logger.debug(tag, throwable);
