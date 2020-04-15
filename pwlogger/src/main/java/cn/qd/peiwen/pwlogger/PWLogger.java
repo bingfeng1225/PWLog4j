@@ -28,61 +28,61 @@ public class PWLogger {
         return Thread.currentThread().getStackTrace()[4];
     }
 
-    public static void d(String content) {
+    public static void dubug(String content) {
         StackTraceElement caller = getCallerStackTraceElement();
         String tag = generateTag(caller);
         logger.debug(tag + "->" + content);
     }
 
-    public static void d(Throwable throwable) {
+    public static void dubug(Throwable throwable) {
         StackTraceElement caller = getCallerStackTraceElement();
         String tag = generateTag(caller);
         logger.debug(tag, throwable);
     }
 
-    public static void e(String content) {
+    public static void error(String content) {
         StackTraceElement caller = getCallerStackTraceElement();
         String tag = generateTag(caller);
         logger.error(tag + "->" + content);
     }
 
-    public static void e(Throwable throwable) {
+    public static void error(Throwable throwable) {
         StackTraceElement caller = getCallerStackTraceElement();
         String tag = generateTag(caller);
         logger.error(tag, throwable);
     }
 
-    public static void f(String content) {
+    public static void fatal(String content) {
         StackTraceElement caller = getCallerStackTraceElement();
         String tag = generateTag(caller);
         logger.fatal(tag + "->" + content);
     }
 
-    public static void f(Throwable throwable) {
+    public static void fatal(Throwable throwable) {
         StackTraceElement caller = getCallerStackTraceElement();
         String tag = generateTag(caller);
         logger.fatal(tag, throwable);
     }
 
-    public static void i(String content) {
+    public static void info(String content) {
         StackTraceElement caller = getCallerStackTraceElement();
         String tag = generateTag(caller);
         logger.info(tag + "->" + content);
     }
 
-    public static void i(Throwable throwable) {
+    public static void info(Throwable throwable) {
         StackTraceElement caller = getCallerStackTraceElement();
         String tag = generateTag(caller);
         logger.info(tag, throwable);
     }
 
-    public static void w(String content) {
+    public static void warn(String content) {
         StackTraceElement caller = getCallerStackTraceElement();
         String tag = generateTag(caller);
         logger.warn(tag + "->" + content);
     }
 
-    public static void w(Throwable throwable) {
+    public static void warn(Throwable throwable) {
         StackTraceElement caller = getCallerStackTraceElement();
         String tag = generateTag(caller);
         logger.warn(tag, throwable);
