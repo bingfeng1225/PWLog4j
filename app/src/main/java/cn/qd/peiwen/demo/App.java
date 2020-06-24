@@ -6,7 +6,7 @@ import org.apache.log4j.Level;
 
 import java.io.File;
 
-import cn.qd.peiwen.pwlogger.PWConfigurator;
+import cn.qd.peiwen.logger.PWConfigurator;
 
 
 public class App extends Application {

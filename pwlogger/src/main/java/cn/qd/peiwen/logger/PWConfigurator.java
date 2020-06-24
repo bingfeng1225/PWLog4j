@@ -1,4 +1,4 @@
-package cn.qd.peiwen.pwlogger;
+package cn.qd.peiwen.logger;
 
 import org.apache.log4j.Layout;
 import org.apache.log4j.Level;
