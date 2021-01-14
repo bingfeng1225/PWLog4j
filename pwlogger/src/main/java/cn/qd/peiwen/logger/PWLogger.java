@@ -87,4 +87,16 @@ public class PWLogger {
         String tag = generateTag(caller);
         logger.warn(tag, throwable);
     }
+
+    public static void crash(String content) {
+        StackTraceElement caller = getCallerStackTraceElement();
+        String tag = generateTag(caller);
+        Logger.getLogger("crash").error(tag + "->" + content);
+    }
+
+    public static void crash(Throwable throwable) {
+        StackTraceElement caller = getCallerStackTraceElement();
+        String tag = generateTag(caller);
+        Logger.getLogger("crash").error(tag, throwable);
+    }
 }
