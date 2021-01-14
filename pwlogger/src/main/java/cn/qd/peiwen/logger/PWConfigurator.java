@@ -8,6 +8,7 @@ import org.apache.log4j.PatternLayout;
 import org.apache.log4j.RollingFileAppender;
 import org.apache.log4j.helpers.LogLog;
 
+import java.io.File;
 import java.io.IOException;
 
 import de.mindpipe.android.logging.log4j.LogCatAppender;
@@ -21,7 +22,8 @@ public class PWConfigurator {
     private boolean useLogcatAppender = true; // 使用Logcat输出器
 
     private int maxBackupSize = 5; // 最大备份数量
-    private String fileName = "log.txt"; // 文件名字
+    private String filePath = ""; // 文件路径
+    private String fileName = "output.log"; // 文件名字
     private boolean useFileAppender = true; // 使用文件输出器
     private boolean immediateFlush = true;  // 马上刷新
     private long maxFileSize = 5 * 1024 * 1024; // 最大文件大小
@@ -56,8 +58,8 @@ public class PWConfigurator {
         return this;
     }
 
-    public PWConfigurator fileName(String fileName) {
-        this.fileName = fileName;
+    public PWConfigurator filePath(String filePath) {
+        this.filePath = filePath;
         return this;
     }
 
@@ -87,14 +89,15 @@ public class PWConfigurator {
     }
 
     public void configure() {
-        Logger root = Logger.getRootLogger(); // 获取跟日志级别
-        Logger crash = Logger.getLogger("crash");
+        Logger root = LogManager.getRootLogger(); // 获取跟日志级别
+        Logger crash = LogManager.getLogger("crash");
 
         if (this.resetConfiguration) {   // 如果重设，则执行重设命令
             LogManager.getLoggerRepository().resetConfiguration();
         }
         root.setLevel(this.level);
         crash.setLevel(this.level);
+        crash.setAdditivity(false);
         LogLog.setInternalDebugging(this.internalDebugging);
 
         if (this.useFileAppender) {
@@ -114,7 +117,7 @@ public class PWConfigurator {
     private RollingFileAppender configureFileAppender() {
         try {
             Layout fileLayout = new PatternLayout(this.filePattern);
-            RollingFileAppender rollingFileAppender = new RollingFileAppender(fileLayout, this.fileName);  // 规定文件输出模式和文件名字输出模式
+            RollingFileAppender rollingFileAppender = new RollingFileAppender(fileLayout, this.filePath + File.separator + "log" + File.separator + this.fileName);  // 规定文件输出模式和文件名字输出模式
             rollingFileAppender.setMaxBackupIndex(this.maxBackupSize);  // 设置最大备份索引
             rollingFileAppender.setMaximumFileSize(this.maxFileSize); // 设置最大文件大小
             rollingFileAppender.setImmediateFlush(this.immediateFlush); // 设置是否立即刷新
@@ -128,7 +131,7 @@ public class PWConfigurator {
     private RollingFileAppender configureCrashFileAppender() {
         try {
             Layout fileLayout = new PatternLayout(this.filePattern);
-            RollingFileAppender rollingFileAppender = new RollingFileAppender(fileLayout, "crash-" + this.fileName);  // 规定文件输出模式和文件名字输出模式
+            RollingFileAppender rollingFileAppender = new RollingFileAppender(fileLayout, this.filePath + File.separator + "crash" + File.separator + "crash-" + this.fileName);  // 规定文件输出模式和文件名字输出模式
             rollingFileAppender.setMaxBackupIndex(this.maxBackupSize);  // 设置最大备份索引
             rollingFileAppender.setMaximumFileSize(this.maxFileSize); // 设置最大文件大小
             rollingFileAppender.setImmediateFlush(this.immediateFlush); // 设置是否立即刷新

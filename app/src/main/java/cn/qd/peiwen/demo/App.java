@@ -20,7 +20,7 @@ public class App extends Application {
         new PWConfigurator().level(this.parseLevel())
                 .useFileAppender(BuildConfig.PW_LOG_FILE)
                 .useLogcatAppender(BuildConfig.PW_LOG_LOGCAT)
-                .fileName(this.getExternalCacheDir().getAbsolutePath() + File.separator + "demo.txt")// /sdcard/Android/data/[package]/cache/demo.txt
+                .filePath(this.getExternalCacheDir().getAbsolutePath())// /sdcard/Android/data/[package]/cache/demo.txt
                 .configure();
     }
 

@@ -1,5 +1,6 @@
 package cn.qd.peiwen.logger;
 
+import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
 /**
@@ -7,7 +8,7 @@ import org.apache.log4j.Logger;
  * tag自动产生
  */
 public class PWLogger {
-    private static Logger logger = Logger.getRootLogger();
+    private static Logger logger = LogManager.getRootLogger();
 
     private static String filtrateInnerClass(String className) {
         if (className.contains("$")) {
@@ -91,12 +92,12 @@ public class PWLogger {
     public static void crash(String content) {
         StackTraceElement caller = getCallerStackTraceElement();
         String tag = generateTag(caller);
-        Logger.getLogger("crash").error(tag + "->" + content);
+        LogManager.getLogger("crash").error(tag + "->" + content);
     }
 
     public static void crash(Throwable throwable) {
         StackTraceElement caller = getCallerStackTraceElement();
         String tag = generateTag(caller);
-        Logger.getLogger("crash").error(tag, throwable);
+        LogManager.getLogger("crash").error(tag, throwable);
     }
 }

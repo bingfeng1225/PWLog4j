@@ -14,7 +14,7 @@ android {
         debug {
             minifyEnabled false
             buildConfigField "String", "PW_LOG_LEVEL", "\"ALL\""
-            buildConfigField "boolean", "PW_LOG_FILE", "false"
+            buildConfigField "boolean", "PW_LOG_FILE", "true"
             buildConfigField "boolean", "PW_LOG_LOGCAT", "true"
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
